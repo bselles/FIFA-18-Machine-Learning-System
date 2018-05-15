@@ -1,0 +1,7 @@
+Ejecución con lambda=0
+
+Los atributos utilizados son 
+
+sel_features =['Acceleration','Agility','Ball control','Crossing','Dribbling',
+'Finishing','GK diving','GK reflexes','Interceptions','Long passing','Marking',
+'Short passing','Sprint speed','Strength','Vision','Preferred Positions'];
