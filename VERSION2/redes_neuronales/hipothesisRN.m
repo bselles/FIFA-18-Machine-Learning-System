@@ -1,4 +1,5 @@
-#Dados Theta1, Theta2 y un conjunto de ejemplos de entrenamiento contenidos en X,
+#Dados Theta1, Theta2 y un conjunto de ejemplos de 
+#entrenamiento contenidos en X,
 #calcula la hipotesis generada por la red neuronal. 
 function result= hipothesisRN(X,Theta1,Theta2)
   a_1= X ;    #Add a_0(1). Ya tiene añadidos los unos.
