@@ -1,0 +1,8 @@
+  sel_features =['Acceleration','Aggression','Agility','Balance','Ball control','Composure','Crossing',
+                   'Curve','Dribbling','Finishing',"Free kick accuracy",'GK diving','GK reflexes',
+                   'GK handling', 'GK kicking','GK positioning', 'Heading accuracy','Jumping',
+                   'Interceptions','Long shots','Long passing','Marking','Short passing',
+                   'Positioning','Shot power', 'Sliding tackle', 'Volleys',
+                   'Sprint speed','Strength','Vision','Overall'];
+    
+  DISTRIBUCIÓN DE LA VERSIÓN 2. AHORA TRABAJAMOS CLASIFICANDO LA CALIDAD DEL JUGADOR!!!!!!

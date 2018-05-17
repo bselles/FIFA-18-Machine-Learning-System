@@ -1,0 +1,1 @@
+#Implementa la función sigmoide.function result = sigmoide(Z)   result = (1+ exp(Z*(-1))).^(-1);endfunction

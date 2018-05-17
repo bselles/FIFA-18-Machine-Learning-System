@@ -1,0 +1,577 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{datasetCreator}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{}IMPORTS NECESARIOS}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{csv}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{}Cargamos el df asociado al csv situado en path.}
+        \PY{k}{def} \PY{n+nf}{loadDataset}\PY{p}{(}\PY{n}{path}\PY{p}{)}\PY{p}{:}
+            \PY{n}{names} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Photo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Nationality}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Flag}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Overall}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Potential}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Club}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Club Logo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Wage}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Special}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Acceleration}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Aggression}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Agility}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Balance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ball control}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Composure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Crossing}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Curve}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dribbling}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Finishing}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Free kick accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GK diving}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GK handling}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GK kicking}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GK positioning}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GK reflexes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heading accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Interceptions}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Jumping}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Long passing}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Long shots}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Marking}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Penalties}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Positioning}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Reactions}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Short passing}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Shot power}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sliding tackle}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sprint speed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Stamina}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Standing tackle}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Strength}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Vision}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Volleys}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CAM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CDM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ID}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LAM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LCB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LCM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LDM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{LWB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Preferred Positions}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RAM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RCB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RCM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RDM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RF}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RM}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RW}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RWB}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ST}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+            \PY{k}{return} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{path}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{n}{names}\PY{p}{)}\PY{o}{.}\PY{n}{dropna}\PY{p}{(}\PY{p}{)}    \PY{c+c1}{\PYZsh{}Devolvemos el dataframe.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{}Elimina atributos innecesarios.}
+        \PY{c+c1}{\PYZsh{}Algunos atributos, como \PYZdq{}Aggression\PYZdq{} podrían ser de utilidad pero, pero han sido eliminados para}
+        \PY{c+c1}{\PYZsh{}evitar tener demasiados.}
+        
+        \PY{k}{def} \PY{n+nf}{deleteFeatures}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{p}{:}    
+            \PY{c+c1}{\PYZsh{}DISTRIBUCIÓN 1}
+            \PY{c+c1}{\PYZsh{}sel\PYZus{}features =[\PYZsq{}Acceleration\PYZsq{},\PYZsq{}Agility\PYZsq{},\PYZsq{}Ball control\PYZsq{},\PYZsq{}Crossing\PYZsq{},\PYZsq{}Dribbling\PYZsq{},\PYZsq{}Finishing\PYZsq{},\PYZsq{}GK diving\PYZsq{},\PYZsq{}GK reflexes\PYZsq{},\PYZsq{}Interceptions\PYZsq{},\PYZsq{}Long passing\PYZsq{},\PYZsq{}Marking\PYZsq{},\PYZsq{}Short passing\PYZsq{},\PYZsq{}Sprint speed\PYZsq{},\PYZsq{}Strength\PYZsq{},\PYZsq{}Vision\PYZsq{},\PYZsq{}Overall\PYZsq{}];}
+            
+            \PY{c+c1}{\PYZsh{}DISTRIBUCIÓN 2 \PYZhy{}\PYZhy{}\PYZgt{}Contiene todos los atributos numéricos relevantes. 31 features (30 + 1)}
+            \PY{n}{sel\PYZus{}features} \PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Acceleration}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Aggression}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Agility}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Balance}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ball control}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Composure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Crossing}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Curve}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Dribbling}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Finishing}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Free kick accuracy}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GK diving}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GK reflexes}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GK handling}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GK kicking}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{GK positioning}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Heading accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Jumping}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Interceptions}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Long shots}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Long passing}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Marking}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Short passing}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Positioning}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Shot power}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sliding tackle}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Volleys}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                           \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Sprint speed}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Strength}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Vision}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Overall}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;}
+            
+            \PY{c+c1}{\PYZsh{}DISTRIBUCION 3}
+            \PY{c+c1}{\PYZsh{}sel\PYZus{}features =[\PYZsq{}Acceleration\PYZsq{},\PYZsq{}Agility\PYZsq{},\PYZsq{}Ball control\PYZsq{},\PYZsq{}Crossing\PYZsq{},}
+            \PY{c+c1}{\PYZsh{}               \PYZsq{}Curve\PYZsq{},\PYZsq{}Dribbling\PYZsq{},\PYZsq{}Finishing\PYZsq{},\PYZsq{}GK diving\PYZsq{},}
+            \PY{c+c1}{\PYZsh{}              \PYZsq{}Interceptions\PYZsq{},\PYZsq{}Long shots\PYZsq{},\PYZsq{}Long passing\PYZsq{},\PYZsq{}Marking\PYZsq{},\PYZsq{}Short passing\PYZsq{},}
+            \PY{c+c1}{\PYZsh{}              \PYZsq{}Sliding tackle\PYZsq{}, \PYZsq{}Volleys\PYZsq{},}
+            \PY{c+c1}{\PYZsh{}               \PYZsq{}Sprint speed\PYZsq{},\PYZsq{}Strength\PYZsq{},\PYZsq{}Vision\PYZsq{},\PYZsq{}Preferred Positions\PYZsq{}];}
+          
+            \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{sel\PYZus{}features}\PY{p}{)}\PY{p}{)}
+            \PY{n}{df} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{sel\PYZus{}features}\PY{p}{]}
+        
+            \PY{k}{return} \PY{n}{df}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+c1}{\PYZsh{}MAIN}
+         
+        \PY{n}{df}\PY{o}{=}\PY{n}{loadDataset}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{CompleteDataset.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}                 \PY{c+c1}{\PYZsh{}Cargamos el dataset.}
+        \PY{n}{df}\PY{o}{=}\PY{n}{deleteFeatures}\PY{p}{(}\PY{n}{df}\PY{p}{)}                                                 \PY{c+c1}{\PYZsh{}Eliminamos atributos inútiles.}
+        
+        \PY{c+c1}{\PYZsh{}En el dataframe resultante, tenemos varios atributos y, en la última columna, la media general (overall). Esto será el objeto}
+        \PY{c+c1}{\PYZsh{}de estudio en este proyecto. En la parte en octave, separaremos los ejemplos de entrenamiento en tres posibles clases, en}
+        \PY{c+c1}{\PYZsh{}función de su media: \PYZlt{}=65 \PYZhy{}\PYZhy{}\PYZgt{} Normales.}
+        \PY{c+c1}{\PYZsh{}             \PYZgt{}65 \PYZam{}\PYZam{} \PYZlt{}85 \PYZhy{}\PYZhy{}\PYZgt{} Buenos.}
+        \PY{c+c1}{\PYZsh{}             \PYZgt{}=85 \PYZhy{}\PYZhy{}\PYZgt{}Estrellas.}
+        \PY{c+c1}{\PYZsh{}El sistema será capaz de clasificar los distintos jugadores en Normales, Buenos o Estrellas.}
+        
+        \PY{n}{display}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}Diferenciamos entre ejemplos de entrenamiento, ejemplos de validación y ejemplos de test.}
+        \PY{c+c1}{\PYZsh{}Los primeros consistirán en el 60\PYZpc{} de los ejemplos iniciales. Los segundos y terceros el 20\PYZpc{} cada uno.}
+        \PY{c+c1}{\PYZsh{}ES IMPORTANTE SELECCIONAR EJEMPLOS ALEATORIOS DEL DF PORQUE LOS CASOS DE ENTRENAMIENTO VIENEN ORDENADOS POR OVERALL!!}
+        \PY{n}{x} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{0.6}\PY{p}{)}\PY{p}{)}     \PY{c+c1}{\PYZsh{}Cogemos 0.6*len(df) elementos aleatorios del df. Serán los ejemplos de entrenamiento.}
+        \PY{n}{xval}\PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{0.2}\PY{p}{)}\PY{p}{)}   \PY{c+c1}{\PYZsh{}Cogemos 0.2*len(df) elementos aleatorios del df. Serán los datos de validación.}
+        \PY{n}{xtest}\PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{sample}\PY{p}{(}\PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{o}{*}\PY{l+m+mf}{0.2}\PY{p}{)}\PY{p}{)}  \PY{c+c1}{\PYZsh{}Cogemos 0.2*len(df) elementos aleatorios del df. Serán los datos de test.}
+        
+        
+        \PY{n}{x}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{n}{path\PYZus{}or\PYZus{}buf}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{header}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}\PY{n}{index}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}    \PY{c+c1}{\PYZsh{}Almacenamos los resultados.}
+        \PY{n}{xval}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{n}{path\PYZus{}or\PYZus{}buf}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{xval.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{header}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}\PY{n}{index}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}    \PY{c+c1}{\PYZsh{}Almacenamos los resultados.}
+        \PY{n}{xtest}\PY{o}{.}\PY{n}{to\PYZus{}csv}\PY{p}{(}\PY{n}{path\PYZus{}or\PYZus{}buf}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{xtest.csv}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{header}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,}\PY{n}{index}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}    \PY{c+c1}{\PYZsh{}Almacenamos los resultados.}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+31
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}IPython\textbackslash{}core\textbackslash{}interactiveshell.py:2850: DtypeWarning: Columns (23,35) have mixed types. Specify dtype option on import or set low\_memory=False.
+  if self.run\_code(code, result):
+
+    \end{Verbatim}
+
+    
+    \begin{verbatim}
+      Acceleration Aggression Agility Balance Ball control Composure Crossing  \
+0               89         63      89      63           93        95       85   
+1               92         48      90      95           95        96       77   
+2               94         56      96      82           95        92       75   
+3               88         78      86      60           91        83       77   
+5               79         80      78      80           89        87       62   
+7               93         54      93      91           92        87       80   
+8               60         60      71      69           89        85       85   
+9               78         50      75      69           85        86       68   
+10              75         84      79      60           84        80       66   
+11              76         68      80      75           87        84       90   
+13              88         80      90      87           87        86       80   
+14              75         62      93      94           92        84       78   
+15              93         65      77      65           87        85       87   
+16              90         63      86      91           89        90       70   
+17              68         92      59      64           57        82       58   
+19              88         48      91      85           93        84       80   
+21              87         69      90      80           86        86       82   
+22              77         57      90      86           92        83       72   
+23              95         43      77      70           82        84       77   
+24              62         82      60      52           75        84       44   
+25              72         82      58      53           71        86       69   
+26              62         86      63      58           76        82       55   
+27              62         66      64      58           77        91       64   
+28              75         48      83      70           90        78       82   
+30              70         77      74      68           80        83       60   
+31              63         84      81      41           88        91       76   
+32              87         47      89      91           89        86       80   
+33              82         90      83      90           79        84       67   
+34              69         89      87      94           88        91       72   
+35              72         75      76      61           89        85       78   
+...            ...        ...     ...     ...          ...       ...      ...   
+17947           55         50      51      66           42        39       43   
+17948           54         25      54      55           44        49       32   
+17950           59         51      60      73           49        55       41   
+17952           68         53      63      58           43        42       35   
+17953           67         53      64      50           44        42       41   
+17954           69         26      65      74           48        38       50   
+17955           59         57      62      51           50        46       36   
+17956           62         41      43      60           27        40       24   
+17957           56         59      52      55           43        42       39   
+17958           60         41      46      62           35        35       37   
+17959           69         52      54      72           45        47       34   
+17960           43         47      47      65           47        54       35   
+17961           57         45      44      64           30        43       21   
+17962           65         43      64      58           33        45       37   
+17963           57         59      58      70           42        39       32   
+17964           56         51      51      65           41        35       31   
+17965           58         54      59      77           43        38       34   
+17966           59         55      50      79           48        35       31   
+17967           63         51      57      65           35        38       47   
+17968           55         47      49      59           30        48       25   
+17969           62         27      69      71           46        42       32   
+17970           52         56      60      51           42        38       29   
+17971           51         33      51      69           44        44       28   
+17972           60         44      47      54           28        43       51   
+17973           65         43      57      51           42        35       36   
+17974           66         40      45      48           34        37       28   
+17975           25         52      40      52           46        42       42   
+17978           66         26      60      77           41        50       28   
+17979           57         46      58      74           43        45       34   
+17980           48         52      49      47           32        33       19   
+
+      Curve Dribbling Finishing   ...   Marking Short passing Positioning  \
+0        81        91        94   ...        22            83          95   
+1        89        97        95   ...        13            88          93   
+2        81        96        89   ...        21            81          90   
+3        86        86        94   ...        30            83          92   
+5        77        85        91   ...        25            83          91   
+7        82        93        83   ...        25            86          85   
+8        85        79        76   ...        63            90          79   
+9        74        84        91   ...        12            75          92   
+10       73        61        60   ...        86            78          52   
+11       83        85        83   ...        30            90          84   
+13       78        90        85   ...        30            81          86   
+14       79        86        71   ...        66            92          79   
+15       86        89        87   ...        51            86          86   
+16       82        89        90   ...        13            79          91   
+17       60        58        33   ...        92            59          28   
+19       88        92        85   ...        14            83          84   
+21       84        87        88   ...        23            79          91   
+22       85        90        69   ...        49            91          83   
+23       78        82        88   ...        28            77          89   
+24       56        69        39   ...        84            79          38   
+25       56        67        34   ...        88            75          47   
+26       49        53        42   ...        87            79          48   
+27       65        68        55   ...        85            80          56   
+28       84        86        74   ...        22            89          83   
+30       61        68        38   ...        90            79          59   
+31       82        82        87   ...        15            84          86   
+32       87        92        85   ...        29            84          85   
+33       49        77        65   ...        75            84          71   
+34       73        90        58   ...        76            90          71   
+35       84        86        71   ...        66            86          83   
+...     ...       ...       ...   ...       ...           ...         ...   
+17947    34        45        27   ...        48            33          43   
+17948    39        41        52   ...        14            35          48   
+17950    46        49        35   ...        42            52          38   
+17952    35        42        31   ...        37            59          50   
+17953    31        42        29   ...        35            54          44   
+17954    44        46        45   ...        21            43          44   
+17955    33        51        32   ...        44            55          33   
+17956    27        29        23   ...        40            29          27   
+17957    28        39        17   ...        42            45          38   
+17958    26        21        24   ...        45            36          36   
+17959    34        43        47   ...        22            51          44   
+17960    48        47        36   ...        39            55          36   
+17961    22        32        19   ...        45            36          21   
+17962    28        38        26   ...        42            26          35   
+17963    32        41        29   ...        48            55          30   
+17964    30        44        26   ...        37            55          31   
+17965    30        43        28   ...        39            52          54   
+17966    39        46        28   ...        44            53          28   
+17967    28        54        23   ...        38            27          41   
+17968    21        26        21   ...        37            26          22   
+17969    36        51        50   ...        12            42          43   
+17970    33        29        22   ...        41            39          32   
+17971    38        47        59   ...        15            46          49   
+17972    46        48        34   ...        49            40          44   
+17973    31        48        35   ...        35            47          51   
+17974    28        29        15   ...        40            30          27   
+17975    52        44        40   ...        37            54          39   
+17978    32        37        47   ...        18            42          46   
+17979    30        41        32   ...        43            49          37   
+17980    17        23        20   ...        38            31          20   
+
+      Shot power Sliding tackle Volleys Sprint speed Strength Vision Overall  
+0             94             23      88           91       80     85      94  
+1             85             26      85           87       59     90      93  
+2             80             33      83           90       53     80      92  
+3             87             38      88           77       80     84      92  
+5             88             19      87           83       84     78      91  
+7             79             22      79           87       65     86      90  
+8             87             69      82           52       74     88      90  
+9             88             18      88           80       85     70      90  
+10            79             91      66           77       81     63      90  
+11            85             40      82           75       73     90      89  
+13            84             35      83           84       72     83      89  
+14            73             73      74           71       58     90      89  
+15            91             52      76           95       80     79      89  
+16            88             12      85           84       74     83      89  
+17            78             90      45           78       91     50      89  
+19            82             20      88           84       65     84      88  
+21            81             11      87           86       61     76      88  
+22            75             62      90           68       59     86      88  
+23            81             36      86           96       77     77      88  
+24            74             88      58           72       85     74      88  
+25            79             90      53           78       91     76      88  
+26            67             89      47           67       80     52      88  
+27            71             90      60           65       85     79      88  
+28            70             19      77           68       57     92      88  
+30            74             88      63           74       81     74      88  
+31            91             27      90           67       88     83      88  
+32            87             26      86           86       67     83      88  
+33            72             85      56           80       77     76      87  
+34            56             79      64           62       56     88      87  
+35            90             66      85           76       91     86      87  
+...          ...            ...     ...          ...      ...    ...     ...  
+17947         25             49      25           50       54     30      48  
+17948         46             11      35           56       44     41      48  
+17950         42             43      35           68       56     46      48  
+17952         49             44      32           68       58     42      48  
+17953         49             45      38           65       49     45      48  
+17954         46             25      37           57       51     42      48  
+17955         54             50      28           49       52     47      48  
+17956         35             47      20           55       63     32      48  
+17957         39             44      28           52       36     38      47  
+17958         38             46      21           56       57     32      47  
+17959         48             31      41           68       58     47      47  
+17960         44             47      42           62       49     53      47  
+17961         32             47      20           54       45     27      47  
+17962         22             48      26           63       60     32      47  
+17963         43             47      30           49       46     47      47  
+17964         46             53      31           51       50     51      47  
+17965         54             48      37           64       31     40      47  
+17966         42             54      31           58       42     51      47  
+17967         22             46      23           54       63     32      47  
+17968         32             54      21           63       50     32      47  
+17969         45             18      36           65       41     47      47  
+17970         43             43      19           55       68     31      47  
+17971         52             15      35           56       61     48      47  
+17972         44             43      33           58       48     40      47  
+17973         41             41      33           64       40     40      46  
+17974         30             49      24           60       42     28      46  
+17975         52             38      34           22       37     43      46  
+17978         42             14      33           51       32     37      46  
+17979         43             47      25           58       46     51      46  
+17980         21             43      19           49       67     22      46  
+
+[15746 rows x 31 columns]
+    \end{verbatim}
+
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
