@@ -30,3 +30,4 @@ function result= retro_propagacion(X,Y, Theta1,Theta2,lambda)
   #El resultado será una sola columna que contendrá ambos gradientes.
   result=[grad1(:); grad2(:)];
 endfunction
+

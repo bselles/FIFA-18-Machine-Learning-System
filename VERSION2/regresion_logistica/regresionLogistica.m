@@ -1,19 +1,20 @@
-#Funcion que implementa la regresión logística.
+#Función que implementa la regresión logística.
 
-#Utilizará los datos de path para el entrenamiento y la 
-#lambda proporcionada por el usuario.
-function percentage = regresionLogistica(path,lambda)
+#Utilizará la lambda proporcionada por el usuario.
+function percentage = regresionLogistica(lambda,numIter)
   
   #Para eliminar los warnings en el uso de fmincg.
-  warning('off','all');         
+  warning('off','all');   
+  
   #Cargamos el dataset y separamos los ejemplos de entrenamiento de 
   #los resultados.
-  X=load(path); 
+  X=load('../datasets/x.csv'); 
   y=X(:,end);
+  
   #A cada solución le asociamos una clase: normal, bueno o estrella.
   y=translateClasses(y);  
   X=X(:,1:end-1);
-  all_theta=oneVsAll(X,y,3,lambda);
+  all_theta=oneVsAll(X,y,3,lambda,numIter);
   
   #Añadimos una columna de unos (la primera por la izquierda).
   X=[ones(rows(X),1) X];
@@ -27,3 +28,4 @@ function percentage = regresionLogistica(path,lambda)
   result=(result==y);
   percentage = (sum(result)*100)/rows(X);
 endfunction
+

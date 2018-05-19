@@ -1,8 +1,7 @@
-#FUNCIÓN QUE ENTRENA POR REGRESIÓN LOGÍSTICA A LAS 3 CLASES DEL 
-#CONJUNTO DE DATOS.
+
 #Función que entrena, por regresión logística, tres modelos.
 #Cada uno será entrenado para reconocer una de las clases del problema
-function all_theta = oneVsAll (X,y, num_etiquetas, lambda)
+function all_theta = oneVsAll (X,y, num_etiquetas, lambda, numIter)
   
   #Añadimos una columna de unos (1) por la izquierda. 
   #Como siempre, lo hacemos para poder calcular X*theta con
@@ -12,7 +11,7 @@ function all_theta = oneVsAll (X,y, num_etiquetas, lambda)
   X=[ones(rows(X),1) X];
   
   #Llamamos a fmincg con los opciones descritas en el enunciado.
-  options = optimset ( 'GradObj' , 'on', 'MaxIter', 100);
+  options = optimset ( 'GradObj' , 'on', 'MaxIter', numIter);
   
   for i=1:num_etiquetas
     #Trasponemos el resultado y lo insertamos en la fila i. 
@@ -23,3 +22,5 @@ function all_theta = oneVsAll (X,y, num_etiquetas, lambda)
   endfor
   
 endfunction
+
+

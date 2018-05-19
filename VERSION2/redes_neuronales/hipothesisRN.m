@@ -8,3 +8,5 @@ function result= hipothesisRN(X,Theta1,Theta2)
   a_3=sigmoide(a_2*Theta2'); 
   result=a_3;
 endfunction
+
+

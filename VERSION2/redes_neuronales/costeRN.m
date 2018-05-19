@@ -26,3 +26,4 @@ function [J,grad] = costeRN (params_rn, num_entradas, num_ocultas,
   grad=retro_propagacion(X,Y,Theta1,Theta2,lambda);
   
 endfunction
+

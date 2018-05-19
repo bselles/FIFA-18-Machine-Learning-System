@@ -15,3 +15,5 @@ function [J, grad] = cost_function(theta, X, Y,lambda)
   theta_mod=[0;theta(2:end)];
   grad = (X'*(sigmoide(X*theta)-Y) + lambda*theta_mod )/rows(Y);
 endfunction
+
+

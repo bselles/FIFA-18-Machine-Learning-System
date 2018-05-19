@@ -48,7 +48,6 @@ function porcentajeAcierto=aprendizajeRN(path,lambda, numIter)
   
   #Dibujamos una gráfica mostrando como va disminuyendo 
   #el coste en cada iteración.
-  #plot(1:numIter, cost, "linewidth", 3)
+  #plot(1:length(cost), cost, "linewidth", 3)
 
-  
 endfunction

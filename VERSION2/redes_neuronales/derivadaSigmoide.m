@@ -2,3 +2,5 @@
 function result= derivadaSigmoide(Z)
   result=sigmoide(Z).*(1-sigmoide(Z));  
 endfunction
+
+

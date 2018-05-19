@@ -6,3 +6,4 @@ function result= J_REG(X,y,Theta1,Theta2,lambda)
   result=result +  (sum(sum((Theta1(:,2:end)).^2)) 
   +sum(sum((Theta2(:,2:end)).^2)))*(lambda/(rows(y)*2));
 endfunction
+
