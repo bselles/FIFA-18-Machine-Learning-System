@@ -3,13 +3,13 @@
 
 #Utilizará los datos de path para el entrenamiento de la red neuronal y la 
 #lambda proporcionada por el usuario.
-function porcentajeAcierto=aprendizajeRN(lambda, numIter)
+function porcentajeAcierto=aprendizajeRN(lambda,numOcultas, numIter)
   #Para eliminar los warnings en el uso de fmincg.
   warning('off','all');       
   #Número de atributos de los ejemplos de entrenamiento.   
   num_entradas=30;        
   #Número de capas ocultas de la red neuronal.  
-  num_ocultas=3;
+  num_ocultas=numOcultas;
   #Número de posibles clases entre las que  
   #clasificará los ejemplos de entrenamiento. 
   num_etiquetas=3;               

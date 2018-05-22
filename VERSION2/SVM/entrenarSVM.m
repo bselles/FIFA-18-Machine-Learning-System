@@ -18,7 +18,7 @@ function accuracy= entrenarSVM(C, TOL,max_passes, gaussian, sigma)
     #Entrenamos el SVM.
     
     #Si gaussian es 1, usaremos gaussianKernel. Si es 0, usaremos linearKernel.
-    if gaussian=1
+    if gaussian==1
       model(i)= svmTrain(X,(y==i),C,@(x1,x2) gaussianKernel(x1,x2,sigma));
     else 
       model(i)= svmTrain(X,(y==i),C,@linearKernel,TOL,max_passes);
