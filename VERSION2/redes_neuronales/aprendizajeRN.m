@@ -3,7 +3,7 @@
 
 #Utilizará los datos de path para el entrenamiento de la red neuronal y la 
 #lambda proporcionada por el usuario.
-function porcentajeAcierto=aprendizajeRN(path,lambda, numIter)
+function porcentajeAcierto=aprendizajeRN(lambda, numIter)
   #Para eliminar los warnings en el uso de fmincg.
   warning('off','all');       
   #Número de atributos de los ejemplos de entrenamiento.   
@@ -16,7 +16,7 @@ function porcentajeAcierto=aprendizajeRN(path,lambda, numIter)
                                                         
   #Cargamos el dataset y separamos los ejemplos 
   #de entrenamiento de los resultados.
-  X=load(path); 
+  X=load('../datasets/x.csv'); 
   y=X(:,end);
   #A cada solución le asociamos una clase: normal, bueno o estrella.
   y=translateClasses(y);  
@@ -36,6 +36,13 @@ function porcentajeAcierto=aprendizajeRN(path,lambda, numIter)
   num_ocultas,(num_entradas+1));
   Theta2= reshape(params_rn((1+(num_ocultas* (num_entradas+1))):end),
   num_etiquetas, (num_ocultas+1));
+  
+  #Cargamos los datos de validación, con los que probaremos la 
+  #precisión del sistema.
+  X=load('../datasets/xval.csv'); 
+  y=X(:,end);
+  y=translateClasses(y);  
+  X=X(:,1:end-1);
   
   #Añadimos los unos a X.
   X = [ones(rows(X),1),X];

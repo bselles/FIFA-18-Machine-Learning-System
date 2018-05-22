@@ -16,7 +16,15 @@ function percentage = regresionLogistica(lambda,numIter)
   X=X(:,1:end-1);
   all_theta=oneVsAll(X,y,3,lambda,numIter);
   
-  #Añadimos una columna de unos (la primera por la izquierda).
+  #Cargamos los datos de validación, con los que probaremos la precisión
+  #del sistema.
+  X=load('../datasets/xval.csv'); 
+  y=X(:,end);
+  y=translateClasses(y);  
+  X=X(:,1:end-1);
+  
+  
+  #Añadimos una columna de unos (la primera por la izquierda)
   X=[ones(rows(X),1) X];
   hipotesis = sigmoide(X*all_theta');
   
