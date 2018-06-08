@@ -1,8 +1,0 @@
-Ejecución con sigma=0.01
-Ejecución con C=0.01
-
-Los atributos utilizados son 
-
-sel_features =['Acceleration','Agility','Ball control','Crossing','Dribbling',
-'Finishing','GK diving','GK reflexes','Interceptions','Long passing','Marking',
-'Short passing','Sprint speed','Strength','Vision','Preferred Positions'];
