@@ -1,21 +1,29 @@
-Autores:
-Gabriel SellÈs Salv‡
-Manuel Antonio Fern·ndez Alonso
+# Sistema de aprendizaje autom√°tico para inferir la calidad de un jugador inclu√≠do en el videojuego FIFA 18.
 
-En la carpeta codigo se encuentra el cÛdigo del sistema.
+
+
+### Autores:
+
+Gabriel Sell√©s Salv√†
+
+Manuel Antonio Fern√°ndez Alonso
+
+###  Ficheros
+
+En la carpeta codigo se encuentra el c√≥digo del sistema.
 
 -En codigo/CompleteDatasets se encuentran los datasets originales y 
-el Jupyter Notebook utilizado para la transformaciÛn de estos
+el Jupyter Notebook utilizado para la transformaci√≥n de estos
 (datasetCreator.ipynb).
 
--En codigo/datasets se encuentran los datasets resultantes de la modificaciÛn
+-En codigo/datasets se encuentran los datasets resultantes de la modificaci√≥n
 utilizando datasetCreator.ipynb.
 
--En codigo/regresion_logistica se encuentra el cÛdigo referente a la regresiÛn logÌstica.
+-En codigo/regresion_logistica se encuentra el c√≥digo referente a la regresi√≥n log√≠stica.
 Para probarlo es conveniente utilizar el fichero doTestCasesRL.m
 
--En codigo/redes_neuronales se encuentra el cÛdigo referente a las redes neuronales.
+-En codigo/redes_neuronales se encuentra el c√≥digo referente a las redes neuronales.
 Para probarlo es conveniente utilizar el fichero doTestCasesRN.m
 
--En codigo/SVM se encuentra el cÛdigo referente a las Support Vector Machines.
+-En codigo/SVM se encuentra el c√≥digo referente a las Support Vector Machines.
 Para probarlo es conveniente utilizar el fichero doTestCasesSVM.m
