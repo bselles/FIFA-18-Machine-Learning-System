@@ -1,6 +1,10 @@
-# Sistema de aprendizaje automático para inferir la calidad de un jugador incluído en el videojuego FIFA 18.
+# FIFA 18 Machine learning System
 
+Sistema de aprendizaje automático para inferir la calidad de un jugador incluído en el videojuego FIFA 18.
 
+## Documentación/ Memoria 
+
+https://github.com/bselles/FIFA-18-Machine-Learning-System/blob/master/MemoriaAA.pdf
 
 ### Autores:
 
